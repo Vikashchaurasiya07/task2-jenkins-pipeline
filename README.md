@@ -4,7 +4,7 @@
 
 This project demonstrates a fully automated **CI/CD pipeline using Jenkins** to build and deploy a Node.js ToDo application using Docker.
 
-> 🚀 It is part of my DevOps Internship (Task 2) submission.
+> 🚀 It is part of my DevOps Internship (Task 2) submission. 
 
 ---
 
