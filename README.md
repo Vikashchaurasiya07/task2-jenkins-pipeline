@@ -21,7 +21,9 @@ This project demonstrates a fully automated **CI/CD pipeline using Jenkins** to 
 ##✅ Successful Pipeline Screenshot
 ![Screenshot (20)](https://github.com/user-attachments/assets/260e776b-3d34-4154-8def-d76106c24b59)
 ![Screenshot (19)](https://github.com/user-attachments/assets/ed68c65d-c8fa-4c61-9799-2ccb5cb8aff6)
-![Screenshot (20)](https://github.com/user-attachments/assets/31d96061-cfec-4d76-8aeb-89aa44830aab)
+![Screenshot (18)](https://github.com/user-attachments/assets/eb0d1060-63e6-4df0-8c2f-5a4e85758681)
+
+
 
 
 
