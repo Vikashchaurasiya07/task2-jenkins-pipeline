@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modern ToDo App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      padding: 2rem;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      color: #4a90e2;
+    }
+    .todo-app {
+      max-width: 500px;
+      margin: 0 auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+    .input-group {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    input[type="text"] {
+      flex: 1;
+      padding: 0.5rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    select {
+      padding: 0.5rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    button {
+      background: #4a90e2;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      padding: 0.5rem;
+      margin-bottom: 0.5rem;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .high { background: #ffdddd; }
+    .medium { background: #fff3cd; }
+    .low { background: #d4edda; }
+    .stats {
+      margin-top: 1rem;
+      text-align: center;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>ToDo List</h1>
+  <div class="todo-app">
+    <div class="input-group">
+      <input type="text" id="taskInput" placeholder="Enter your task...">
+      <select id="priority">
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+      </select>
+      <button onclick="addTask()">Add</button>
+    </div>
+    <ul id="taskList"></ul>
+    <div class="stats" id="taskStats"></div>
+  </div>
+
+  <script>
+    const taskInput = document.getElementById("taskInput");
+    const prioritySelect = document.getElementById("priority");
+    const taskList = document.getElementById("taskList");
+    const taskStats = document.getElementById("taskStats");
+
+    let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+    function renderTasks() {
+      taskList.innerHTML = "";
+      let completed = 0;
+      tasks.forEach((task, index) => {
+        const li = document.createElement("li");
+        li.className = task.priority;
+        li.innerHTML = `
+          <span>${task.text}</span>
+          <div>
+            <button onclick="toggleComplete(${index})">${task.completed ? '✔️' : '⬜'}</button>
+            <button onclick="deleteTask(${index})">🗑️</button>
+          </div>`;
+        if (task.completed) li.style.textDecoration = "line-through";
+        if (task.completed) completed++;
+        taskList.appendChild(li);
+      });
+      taskStats.innerText = `Total: ${tasks.length} | Completed: ${completed} | Remaining: ${tasks.length - completed}`;
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+    }
+
+    function addTask() {
+      const text = taskInput.value.trim();
+      const priority = prioritySelect.value;
+      if (text === "") return;
+      tasks.push({ text, priority, completed: false });
+      taskInput.value = "";
+      renderTasks();
+    }
+
+    function deleteTask(index) {
+      tasks.splice(index, 1);
+      renderTasks();
+    }
+
+    function toggleComplete(index) {
+      tasks[index].completed = !tasks[index].completed;
+      renderTasks();
+    }
+
+    renderTasks();
+  </script>
+</body>
+</html>
