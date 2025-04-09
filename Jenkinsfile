@@ -7,6 +7,13 @@ pipeline {
   }
 
   stages {
+    stage('Setup Git') {
+      steps {
+        echo '🔧 Installing Git in Docker container...'
+        sh 'apt-get update && apt-get install -y git'
+      }
+    }
+
     stage('Clone Repository') {
       steps {
         git url: 'https://github.com/Vikashchaurasiya07/task2-jenkins-pipeline.git', branch: 'main', credentialsId: 'github-creds'
@@ -31,20 +38,20 @@ pipeline {
     stage('Build Docker Image') {
       steps {
         echo '🐳 Building Docker image...'
-        sh 'docker build -t task2-todo-app .'
+        sh 'docker build -t nodejs-demo-app .'
       }
     }
 
     stage('Deploy (Optional)') {
       steps {
-        echo '🚀 Deployment step goes here...'
+        echo '🚀 Deployment step (optional)'
       }
     }
   }
 
   post {
     success {
-      echo '✅ Pipeline finished successfully!'
+      echo '✅ CI/CD pipeline completed!'
     }
     failure {
       echo '❌ Pipeline failed!'
