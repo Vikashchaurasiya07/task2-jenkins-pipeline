@@ -1,19 +1,7 @@
 pipeline {
-  agent {
-    docker {
-      image 'node:18'
-      args '-v /var/run/docker.sock:/var/run/docker.sock'
-    }
-  }
+  agent any
 
   stages {
-    stage('Setup Git') {
-      steps {
-        echo '🔧 Installing Git in Docker container...'
-        sh 'apt-get update && apt-get install -y git'
-      }
-    }
-
     stage('Clone Repository') {
       steps {
         git url: 'https://github.com/Vikashchaurasiya07/task2-jenkins-pipeline.git', branch: 'main', credentialsId: 'github-creds'
