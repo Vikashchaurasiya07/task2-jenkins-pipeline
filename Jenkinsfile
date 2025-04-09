@@ -2,13 +2,6 @@ pipeline {
   agent any
 
   stages {
-    stage('Clone Repository') {
-      steps {
-        git url: 'https://github.com/Vikashchaurasiya07/task2-jenkins-pipeline.git', branch: 'main', credentialsId: 'github-creds'
-        echo '✅ Cloned GitHub repo'
-      }
-    }
-
     stage('Build Application') {
       steps {
         echo '📦 Installing dependencies...'
