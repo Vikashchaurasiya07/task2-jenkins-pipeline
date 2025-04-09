@@ -1,16 +1,24 @@
 {
   "name": "nodejs-demo-app",
   "version": "1.0.0",
-  "main": "index.js","scripts": {
-  "start": "node index.js",
-  "test": "echo \"No tests yet\" && exit 0"
-}
-,
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"No tests yet\" && exit 0"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "express": "^5.1.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vikashchaurasiya07/task2-jenkins-pipeline.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Vikashchaurasiya07/task2-jenkins-pipeline/issues"
+  },
+  "homepage": "https://github.com/Vikashchaurasiya07/task2-jenkins-pipeline#readme",
+  "description": ""
 }
